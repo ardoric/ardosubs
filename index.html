@@ -211,6 +211,14 @@ function loadPlayer(videoId) {
 						var leKeyCode = (evt.which) ? evt.which : evt.keyCode;
 						if (leKeyCode == 65) { // a
 							syncCurrentSub();
+						} else if (leKeyCode == 37) { // left arrow
+							player.seekTo(player.getCurrentTime()-2);
+						} else if (leKeyCode == 39) { // right arrow
+							player.seekTo(player.getCurrentTime()+2);
+						} else if (leKeyCode == 38) { // up arrow
+							player.setPlaybackRate(player.getPlaybackRate() + 0.5);
+						} else if (leKeyCode == 40) { // down arrow
+							player.setPlaybackRate(player.getPlaybackRate() - 0.5);
 						}
 					});
 				}
