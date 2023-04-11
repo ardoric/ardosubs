@@ -197,8 +197,8 @@ function syncCurrentSub() {
 function loadPlayer(videoId) {
 	player = new YT.Player('videoPlayer', 
 		{
-			height: 390,
-			width: 640,
+			height: 720,
+			width: 1280 ,
 			videoId: videoId,
 			playerVars: { autoplay: 1},
 			events: {
@@ -463,7 +463,7 @@ function resync(index) {
 <style>
 body{
     background: url(Background_FullHD.jpg) no-repeat center center fixed;
-	background-size: cover;
+    background-size: cover;
     color: lightgray;
 }
 #stuffies {
@@ -482,7 +482,7 @@ body{
 #subtitle_div {
 	position: absolute;
 	top: 0;
-	left: 750;
+	left: 1500;
 }
 .greenback {
 	background-color: darkgreen;
