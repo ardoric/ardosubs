@@ -212,9 +212,9 @@ function loadPlayer(videoId) {
 						if (leKeyCode == 65) { // a
 							syncCurrentSub();
 						} else if (leKeyCode == 37) { // left arrow
-							player.seekTo(player.getCurrentTime()-2);
+							player.seekTo(player.getCurrentTime()-5);
 						} else if (leKeyCode == 39) { // right arrow
-							player.seekTo(player.getCurrentTime()+2);
+							player.seekTo(player.getCurrentTime()+5);
 						} else if (leKeyCode == 38) { // up arrow
 							player.setPlaybackRate(player.getPlaybackRate() + 0.5);
 						} else if (leKeyCode == 40) { // down arrow
