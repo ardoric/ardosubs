@@ -219,6 +219,8 @@ function loadPlayer(videoId) {
 							player.setPlaybackRate(player.getPlaybackRate() + 0.5);
 						} else if (leKeyCode == 40) { // down arrow
 							player.setPlaybackRate(player.getPlaybackRate() - 0.5);
+						} else if (leKeyCode == 8) { // backspace
+							undo();
 						}
 					});
 				}
@@ -302,6 +304,8 @@ function videoPlayPause() {
 }
 
 function undo() {
+	if (currline == 0) // nothing to undo
+		return ;
 	var rows = $('#subtitle_holder').find('tr');
 	$($(rows[currline-1]).find('td')[3]).find('a').text("");
 	$($(rows[currline-1]).find('td')[2]).html("");
