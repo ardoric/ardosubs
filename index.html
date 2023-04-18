@@ -91,6 +91,7 @@ lasttime = 0;
 var stage = 1;
 
 var scrollback = 8;
+var editing = false;
 
 function writeSubs() {
 	var res = "";
@@ -207,6 +208,8 @@ function loadPlayer(videoId) {
 					playSubtitles(player, $('#subtitles')); 
 					// needs to be reviewed
 					$(window).keydown(function(evt) {
+						if (editing) // no keybinds while editing
+							return ;
 						// thank you Firefox, for having a different API for this crap.
 						var leKeyCode = (evt.which) ? evt.which : evt.keyCode;
 						if (leKeyCode == 65) { // a
@@ -428,6 +431,7 @@ function editLyrics() {
 	$('#playback').hide();
 	$('#edit').show();
 	player.pauseVideo();
+	editing = true;
 }
 
 function finishEdit() {
@@ -465,6 +469,7 @@ function finishEdit() {
 		$('tr')[currline-scrollback].scrollIntoView(true);
 	}
 	player.playVideo();
+	editing = false;
 }
 
 function resync(index) {
