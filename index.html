@@ -196,10 +196,37 @@ function syncCurrentSub() {
 }
 
 function loadPlayer(videoId) {
+
+	dimensions = [
+		{ 
+			MinWidth: 1600,
+			Width: 1280,
+			Height: 720 
+		},
+		{ 
+			MinWidth: 1250,
+			Width: 960,
+			Height: 540  
+		}, 
+		{ 
+			MinWidth: 0,
+			Width: 720,
+			Height: 480 
+		}, 
+	 ];
+	
+	var s;
+	for (d of dimensions) {
+		if (window.innerWidth >= d.MinWidth) {
+			s = d;
+			break;
+		}
+	}
+
 	player = new YT.Player('videoPlayer', 
 		{
-			height: 720,
-			width: 1280 ,
+			height: s.Height,
+			width: s.Width,
 			videoId: videoId,
 			playerVars: { autoplay: 1},
 			events: {
@@ -408,7 +435,7 @@ function selectSRT() {
 	reader.readAsText($('#srt_choose')[0].files[0]);
 }
 
-var urlParams;
+var urlParams = {};
 (window.onpopstate = function () {
     var match,
         pl     = /\+/g,  // Regex for replacing addition symbol with a space
@@ -416,7 +443,6 @@ var urlParams;
         decode = function (s) { return decodeURIComponent(s.replace(pl, " ")); },
         query  = window.location.search.substring(1);
 
-    urlParams = {};
     while (match = search.exec(query))
        urlParams[decode(match[1])] = decode(match[2]);
 })();
@@ -505,8 +531,8 @@ body{
 */
 #subtitle_div {
 	position: absolute;
-	top: 0;
-	left: 1500;
+	float: right;
+	right: 50;
 }
 .greenback {
 	background-color: darkgreen;
