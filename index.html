@@ -476,6 +476,13 @@ function resync(index) {
 
 }
 
+async function getVideoLyrics(videoId) {
+	var url = await fetch("/lyrics/" + videoId + ".txt");
+	if (url.ok) {
+		$("#src_lyrics").text(await url.text());
+	}
+}
+
 </script>
 <style>
 body{
@@ -526,7 +533,7 @@ a {
 
 <div id="stage1">
 	Youtube Id: <input id="yt_id" type="text"></input>
-	<script>if ('videoId' in urlParams){$('#yt_id').val(urlParams.videoId)}</script>
+	<script>if ('videoId' in urlParams){ $('#yt_id').val(urlParams.videoId) ; getVideoLyrics(urlParams.videoId);}</script>
 	<!-- Subtitle File: <input id="srt_choose" type="file" onchange="javascript:selectSRT()"></input>
 	Video File: <input id="video_choose" type="file"></input> -->
 	<input id='stg1' type="submit" value="Start" onclick="javascript:startStage2()"></input> <br />
